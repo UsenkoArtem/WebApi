@@ -25,7 +25,7 @@ public class HibernateConfig {
     public LocalSessionFactoryBean SessionFactory () throws URISyntaxException {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("com.art.model");
+        sessionFactory.setPackagesToScan("WebApi");
         sessionFactory.setHibernateProperties(hibernateProperties());
         return  sessionFactory;
     }
@@ -33,8 +33,9 @@ public class HibernateConfig {
 
     private Properties hibernateProperties() {
         Properties properties = new Properties();
-        properties.put("hibernet.dialect","org.hibernate.dialect.MySQLDialect");
+        properties.put("hibernate.dialect","org.hibernate.dialect.MySQLDialect");
         properties.put("hibernate.show_sql", "true");
+        properties.put("hibernate.format_sql","true");
         properties.put("hibernate.connection.autocommit","true");
         properties.put("connection.autoReconnect=true","true");
         properties.put("hibernate.autoReconnect","true");
