@@ -9,8 +9,9 @@
 <body>
 
 <h1> Hello </h1>
-<c:forEach var="user" items="userAll">
-
+<c:forEach items="${userAll}" var="user" >
+ <c:out value="${user.name}"></c:out>
+ <c:out value="${user.username}"></c:out>
  <c:out value="${user}"></c:out>
 </c:forEach>
 </body>
