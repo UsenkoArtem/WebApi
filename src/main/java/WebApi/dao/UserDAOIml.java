@@ -31,7 +31,7 @@ public class UserDAOIml implements UserDAO {
     @Override
     public List<User> findById(int id) {
         Query query = getCurrentSession().createQuery("FROM User ");
-        List list = query.list();
+        List<User> list = query.list();
         return list;
     }
 }
