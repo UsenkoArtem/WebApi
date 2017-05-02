@@ -11,7 +11,6 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Properties;
 
@@ -46,13 +45,12 @@ public class HibernateConfig {
 
         @Bean
         public BasicDataSource dataSource() throws URISyntaxException {
-            URI dbUri = new URI(System.getenv("DATABASE_URL"));
-
-            String username = dbUri.getUserInfo().split(":")[0];
-            String password = dbUri.getUserInfo().split(":")[1];
-            String dbUrl = "jdbc:mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+            String dbUrl = System.getenv("jdbc:mysql://us-cdbr-iron-east-03.cleardb.net:3306/heroku_11397a7d500dee8?reconnect=true");
+            String username = System.getenv("b1ffd10e7e4f91");
+            String password = System.getenv("2c99bc38");
 
             BasicDataSource basicDataSource = new BasicDataSource();
+      //      basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
             basicDataSource.setUrl(dbUrl);
             basicDataSource.setUsername(username);
             basicDataSource.setPassword(password);
