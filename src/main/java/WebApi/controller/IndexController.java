@@ -15,8 +15,12 @@ import java.util.List;
  */
 @Controller
 public class IndexController {
+    private final UserDAO userDAO;
+
     @Autowired
-  private UserDAO userDAO;
+    public IndexController(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String index (ModelMap map) {
