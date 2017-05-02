@@ -1,12 +1,12 @@
 package WebApi.webAppConfig;
 
+import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -62,12 +62,15 @@ public class HibernateConfig {
         }*/
     @Bean
     public DataSource dataSource() {
-        DriverManagerDataSource dataSourse = new DriverManagerDataSource();
-        dataSourse.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSourse.setUsername("b1ffd10e7e4f91");
-        dataSourse.setPassword("2c99bc38");
-        dataSourse.setUrl("jdbc:mysql://us-cdbr-iron-east-03.cleardb.net:3306/heroku_11397a7d500dee8?reconnect=true");
-        return dataSourse;
+        String dbUrl = System.getenv("JDBC_DATABASE_URL");
+        String username = System.getenv("JDBC_DATABASE_USERNAME");
+        String password = System.getenv("JDBC_DATABASE_PASSWORD");
+
+        BasicDataSource basicDataSource = new BasicDataSource();
+        basicDataSource.setUrl(dbUrl);
+        basicDataSource.setUsername(username);
+        basicDataSource.setPassword(password);
+        return basicDataSource;
     }
 
     @Bean
