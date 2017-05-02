@@ -50,6 +50,7 @@ public class HibernateConfig {
             String password = System.getenv("JDBC_DATABASE_PASSWORD");
 
             BasicDataSource basicDataSource = new BasicDataSource();
+            basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
             basicDataSource.setUrl(dbUrl);
             basicDataSource.setUsername(username);
             basicDataSource.setPassword(password);
