@@ -33,5 +33,4 @@ gen
 .gitignore
 .idea/
 WebApi.iml
-out/
 target/
